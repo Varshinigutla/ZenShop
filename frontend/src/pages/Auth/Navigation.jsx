@@ -43,7 +43,7 @@ const Navigation = () => {
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
    
@@ -174,20 +174,19 @@ const Navigation = () => {
 
               <li>
                 <Link 
-                  to="admin/profile" 
+                  to="/profile" 
                   className="block px-4 py-2 hover:bg-gray-100"
                 >
                   Profile
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="admin/logout" 
+                <button 
                   onClick={logoutHandler}
                   className="block px-4 py-2 hover:bg-gray-100"
                 >
                   Logout
-                </Link>
+                </button>
               </li>
           </ul>
          )}   

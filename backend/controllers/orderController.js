@@ -27,16 +27,16 @@ function calcPrices(orderItems) {
 }
 
 const createOrder = async (req, res) => {
-  try {
+  try{
     const { orderItems, shippingAddress, paymentMethod } = req.body;
 
-    if (orderItems && orderItems.length === 0) {
+    if(orderItems && orderItems.length === 0) {
       res.status(400);
       throw new Error("No order items");
     }
 
     const itemsFromDB = await Product.find({
-      _id: { $in: orderItems.map((x) => x._id) },
+      _id: {$in: orderItems.map((x) => x._id)}
     });
 
     const dbOrderItems = orderItems.map((itemFromClient) => {
@@ -73,8 +73,9 @@ const createOrder = async (req, res) => {
 
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
+
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({error: error.message});
   }
 };
 
